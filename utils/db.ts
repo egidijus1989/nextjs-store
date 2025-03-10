@@ -1,16 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 
-const prismaClientSingeton = () => {
+const prismaClientSingleton = () => {
   return new PrismaClient();
 };
 
-type PrismaClientSingeton = ReturnType<typeof prismaClientSingeton>;
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
 
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingeton | undefined;
+  prisma: PrismaClientSingleton | undefined;
 };
 
-const prisma = globalForPrisma.prisma ?? prismaClientSingeton();
+const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
 
 export default prisma;
 
